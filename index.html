@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <!--Let browser know website is optimized for mobile-->
+        <link rel="stylesheet" href="css/main.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	    <style>
+	    </style>
+    </head>
+	<body>
+        <!-- Header1 starts-->
+        <div class="row headergradient header1">
+            <div class="col l3 m12 s12">
+                <div class="logo2">
+                    <img src="images/logo.png" height="100px">
+                </div>
+            </div>
+            <div class="col l3 m4 s12 right-align">
+                    <div class="col l6 m6 s12 margintop20 ">
+                        <img class="iconBorder padding5" src="images/svg/address1.svg" height="50px">
+                    </div>
+                    <div class="col l6 m6 s12">
+                        <p class="font18 bold wrap center">19216 Robin Perch Ln, Tampa FL 33647</p>
+                    </div>
+            </div>
+            <div class="col l3 m4 s12 center">
+                <div class="row">
+                    <div class="col l4 m4 s12 margintop20 right-align">
+                        <img class="iconBorder padding5" src="images/svg/envelope.svg" height="50px">
+                    </div>
+                    <div class="col l8 m8 s12 margintop10">
+                        <p class="font18 bold wrap center"> volunteers@adoptfarmer.org</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col l3 m4 s12 center">
+                <div class="row">
+                    <div class="col l4 m4 s12 margintop20 right-align">
+                        <img class="iconBorder padding5" src="images/svg/phone.svg" height="50px">
+                    </div>
+                    <div class="col l8 m8 s12 margintop10 left-align">
+                        <p class="font18 bold wrap center"> (813)-444-7635</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header1 ends-->
+
+        <!-- Header2 starts-->
+        <div id="header2" style="position:relative">
+            <div class="row roundedCorners blackBackground whiteText center header2">
+                <div class="col l2 m2">
+                    <p class="font16 bold">Mission</p>
+                </div>
+                <div class="col l2 m2">
+                    <p class="font16 bold">Process</p>
+                </div>
+                <div class="col l2 m2">
+                    <p class="font16 bold">Farmer</p>
+                </div>
+                <div class="col l2 m2">
+                    <p class="font16 bold">Gallery</p>
+                </div>
+                <div class="col l2 m2">
+                    <p class="font16 bold">Events</p>
+                </div>
+                <div class="col l2 m2">
+                    <p class="font16 bold">Blogs</p>
+                </div>
+            </div>
+        </div>
+        <!-- Header2 ends-->
+        <div style="height:300px;background-color: red;margin-top:-20px;position:relative;">
+        </div>
+	    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+	    <script>
+            function centerAlignHeader(){
+                var windowWidth = $(window).width();
+                var headerLeft = windowWidth*30/200;
+                //$("#header2").css({"left":headerLeft});
+            }
+            $(window).on('resize',()=>{
+                centerAlignHeader();
+            });
+            $(document).ready(function(){
+                centerAlignHeader();
+            });
+	    </script>
+	</body>
+</html>
