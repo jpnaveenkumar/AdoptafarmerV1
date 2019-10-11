@@ -75,5 +75,21 @@ $(document).ready(()=>{
             duration : 500
         }
     );
-    setCarouselAutoplay();  
+    setCarouselAutoplay();
+
+    $('#approachImg').click(function(){
+        var elements = document.getElementsByClassName("rollingText");
+        console.log(elements);
+        var index = 0;
+         $("#bar").addClass("slider");
+        var id = setInterval(()=>{
+            elements[index].style.display = "block";
+            elements[index].classList.add("fadeIn");
+            index++;
+            if(index==elements.length){
+                clearInterval(id);
+                $("#test").css("justify-content","center");
+            }
+        },500);
+    });
 });

@@ -255,3 +255,32 @@
  #missionButton:hover{
      transform: translateX(10px);
  }
+ .sample{
+    text-align: center;
+    word-spacing: 10px;
+ }
+ @keyframes fadeIn{
+     0%{
+         opacity: 0;
+     }
+     100%{
+         opacity: 1;
+     }
+ }
+ .fadeIn{
+     animation: fadeIn 1s forwards;
+ }
+ .rollingText{
+    display: none;
+ }
+ @keyframes slideRight{
+     0%{
+         left: 0%;
+     }
+     100%{
+         left: 90%;
+     }
+ }
+ .slider{
+     animation : slideRight 5s forwards linear;
+ }
