@@ -7,6 +7,12 @@
 .font16{
     font-size: 16px;
 }
+.font24{
+    font-size: 24px;
+}
+.font28{
+    font-size: 28px;
+}
 .headergradient{
     /* background-image: linear-gradient(to right, #A1FFCE,#FAFFD1); */
 }
@@ -24,6 +30,9 @@
 }
 .padding5{
     padding:10px;
+}
+.wordSpace10{
+    word-spacing: 10px;
 }
 .bold{
     font-weight: bold;
@@ -254,4 +263,116 @@
  }
  #missionButton:hover{
      transform: translateX(10px);
+ }
+ @keyframes fadeIn{
+     0%{
+         opacity: 0;
+     }
+     100%{
+         opacity: 1;
+     }
+ }
+ .fadeIn{
+     animation: fadeIn 1s forwards;
+ }
+ .rollingText{
+    display: none;
+ }
+ #missionMoto{
+    position:relative;
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+ }
+ @keyframes slideRight{
+     0%{
+         left: 0%;
+     }
+     100%{
+         left: 90%;
+     }
+ }
+ .slider{
+     animation : slideRight 5s forwards linear;
+ }
+ #bar{
+    height:50px;
+    width: 50px;
+    position: absolute;
+    padding-left: 10px;
+ }
+ #parallaxCount{
+     background-image: url("../images/parallax.jpg");
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-attachment: fixed;
+     background-position: bottom;
+     background-color: #440101;
+     background-blend-mode: screen
+ }
+ #joinUs{
+     background-color: black;
+ }
+ .paddingtop10{
+     padding-top:20px;
+ }
+ .hrStyle1{
+    height:2px;
+    border-radius:5px;
+    background-color: white;
+    margin-bottom:15px;
+ }
+ .hrStyle1:after{
+     display : block;
+     position: relative;
+     content : 'I I I I I';
+     font-size: 28px;
+     color: white;
+     top:-20px;
+     text-align: center;
+ }
+ .helpingText{
+    display: flex;
+    padding-right: 10px;
+    align-items: center;
+    overflow-wrap: break-word;
+ }
+ .helpingBox{
+    box-shadow : 5px 5px 0px 0px black, 
+                10px 10px 5px 1px white;
+    border:1px solid white;
+    background-color: white;
+    border-radius:10px;
+    padding-top:40px;
+    min-height:250px;
+ }
+ #joinUsBtn,#DonateNowBtn,#AdoptNowBtn{
+    border-radius: 20px;
+    border:2px solid black;
+    background-color: transparent;
+    color:black;
+ }
+ #joinUsBtn:hover,#DonateNowBtn:hover,#AdoptNowBtn:hover{
+     background-color: black;
+     color:white;
+ }
+ .marginBotton30{
+    margin-bottom: 30px;
+ }
+ .paddingBottom50{
+    padding-bottom: 50px;
+ }
+ .paddingTop50{
+    padding-top: 50px;
+ }
+ .letterSpace1{
+     letter-spacing: 2px;
+ }
+ .helpingBoxTopContent{
+    display: flex;
+    color: black;
+    justify-content: space-around;
+ }
+ .padding20{
+    padding: 20px;
  }
