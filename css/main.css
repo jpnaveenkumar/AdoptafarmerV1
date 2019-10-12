@@ -7,6 +7,12 @@
 .font16{
     font-size: 16px;
 }
+.font24{
+    font-size: 24px;
+}
+.font28{
+    font-size: 28px;
+}
 .headergradient{
     /* background-image: linear-gradient(to right, #A1FFCE,#FAFFD1); */
 }
@@ -255,10 +261,6 @@
  #missionButton:hover{
      transform: translateX(10px);
  }
- .sample{
-    text-align: center;
-    word-spacing: 10px;
- }
  @keyframes fadeIn{
      0%{
          opacity: 0;
@@ -273,6 +275,12 @@
  .rollingText{
     display: none;
  }
+ #missionMoto{
+    position:relative;
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+ }
  @keyframes slideRight{
      0%{
          left: 0%;
@@ -283,4 +291,19 @@
  }
  .slider{
      animation : slideRight 5s forwards linear;
+ }
+ #bar{
+    height:50px;
+    width: 50px;
+    position: absolute;
+    padding-left: 10px;
+ }
+ #parallaxCount{
+     background-image: url("../images/parallax.jpg");
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-attachment: fixed;
+     background-position: bottom;
+     background-color: #440101;
+     background-blend-mode: screen
  }

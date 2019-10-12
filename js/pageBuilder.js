@@ -1,3 +1,5 @@
+var isMissionMotoFired = false;
+var isCounterFired = false;
 function setCarouselHeight(){
     var hero = $("#hero").offset();
     var windowHeight = $(window).height();
@@ -13,10 +15,27 @@ function setCarouselAutoplay()
     $('.carousel').carousel('next');
     setTimeout(setCarouselAutoplay, 10000);
 }
+function startMissionMotoSlider()
+{
+    var elements = document.getElementsByClassName("rollingText");
+    console.log(elements);
+    var index = 0;
+     $("#bar").addClass("slider");
+    var id = setInterval(()=>{
+        elements[index].style.display = "block";
+        elements[index].classList.add("fadeIn");
+        index++;
+        if(index==elements.length){
+            clearInterval(id);
+            $("#missionMoto").css("justify-content","center");
+        }
+    },500);
+}
 function registerScrollEvents()
 {
     $(window).scroll(function(){
         var scrollTop = $(window).scrollTop();
+        var scrollBottom = scrollTop + $(window).height();
         if(scrollTop > $("#hero").offset().top){
             $("#mobileHeader").removeClass("hide");
             $("#mobileHeader").addClass("headerFadeIn");
@@ -25,7 +44,48 @@ function registerScrollEvents()
             $("#mobileHeader").removeClass("headerFadeIn");
             $("#mobileHeader").addClass("headerFadeOut hide");
         }
+        console.log("scrollTop : "+scrollBottom+" mission: "+ $("#missionMoto").offset().top);
+        if(!isMissionMotoFired && scrollBottom > $("#missionMoto").offset().top){
+            isMissionMotoFired = true;
+            startMissionMotoSlider();
+        }
+        if( !isCounterFired && scrollBottom > $("#parallaxCount").offset().top){
+            isCounterFired = true;
+            animateCount();
+        }
     });
+}
+function animateCount()
+{
+    var familyCount = 0;
+    var volunteersCount = 1;
+    var fundsCount = 1;
+    var family = setInterval(()=>{
+        $("#familyCount").text(familyCount);
+        familyCount+=2;
+        if(familyCount > 64){
+            $("#familyCount").text(64+"+");
+            clearInterval(family);
+        }
+    },100);
+
+    var volunteers = setInterval(()=>{
+        $("#volunteersCount").text(volunteersCount);
+        volunteersCount = volunteersCount + 4;
+        if(volunteersCount > 100){
+            $("#volunteersCount").text(100+"+");
+            clearInterval(volunteers);
+        }
+    },100);
+
+    var funds = setInterval(()=>{
+        $("#fundsCount").text(fundsCount);
+        fundsCount=fundsCount+2000;
+        if(fundsCount > 100000){
+            $("#fundsCount").text(100000+"+");
+            clearInterval(funds);
+        }
+    },100);
 }
 function registerOnclick(){
     $("#hero").on('click',()=>{
@@ -78,18 +138,6 @@ $(document).ready(()=>{
     setCarouselAutoplay();
 
     $('#approachImg').click(function(){
-        var elements = document.getElementsByClassName("rollingText");
-        console.log(elements);
-        var index = 0;
-         $("#bar").addClass("slider");
-        var id = setInterval(()=>{
-            elements[index].style.display = "block";
-            elements[index].classList.add("fadeIn");
-            index++;
-            if(index==elements.length){
-                clearInterval(id);
-                $("#test").css("justify-content","center");
-            }
-        },500);
+
     });
 });
