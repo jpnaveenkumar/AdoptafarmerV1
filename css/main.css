@@ -264,6 +264,28 @@
  #missionButton:hover{
      transform: translateX(10px);
  }
+ @keyframes bendRight{
+     0%{
+        transform: rotate(0deg);
+     }
+     100%{
+        transform: rotate(5deg);
+     }
+ }
+ @keyframes bendLeft{
+    0%{
+       transform: rotate(0deg);
+    }
+    100%{
+       transform: rotate(-5deg);
+    }
+}
+ .animateLeft:hover{
+    animation : bendRight 1s forwards;
+}
+ .animateRight:hover{
+    animation : bendLeft 1s forwards;
+}
  @keyframes fadeIn{
      0%{
          opacity: 0;
@@ -346,18 +368,21 @@
     padding-top:40px;
     min-height:250px;
  }
- #joinUsBtn,#DonateNowBtn,#AdoptNowBtn{
+ #joinUsBtn,#DonateNowBtn,#AdoptNowBtn,#processBtn{
     border-radius: 20px;
     border:2px solid black;
     background-color: transparent;
     color:black;
  }
- #joinUsBtn:hover,#DonateNowBtn:hover,#AdoptNowBtn:hover{
+ #joinUsBtn:hover,#DonateNowBtn:hover,#AdoptNowBtn:hover,#processBtn:hover{
      background-color: black;
      color:white;
  }
  .marginBotton30{
     margin-bottom: 30px;
+ }
+ .marginBotton50{
+    margin-bottom: 50px;
  }
  .paddingBottom50{
     padding-bottom: 50px;
@@ -375,4 +400,37 @@
  }
  .padding20{
     padding: 20px;
+ }
+ .padding40{
+     padding: 40px;
+ }
+ .ourProcessImgProps{
+    border-top-left-radius: 200px;
+    box-shadow:5px -5px 5px 1px;
+    border-top-right-radius: 200px;
+    margin-left:-7px;
+ }
+ .ourProcessContentProps{
+    text-align:left;
+    margin-top:-25px;
+    border:2px solid black;
+    border-bottom-right-radius: 200px;
+    box-shadow:0px 8px 5px 1px;
+ }
+ .ourServicesContainerProps{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+ }
+ .ourFarmersImgProps{
+    border-top-left-radius: 200px;
+    box-shadow:-5px -5px 5px 1px;
+    border-top-right-radius: 200px;
+    margin-left:3px;
+ }
+ .ourFarmesContainerProps{
+    text-align:right;
+    margin-top:-25px;
+    border:2px solid black;
+    border-bottom-left-radius: 200px;
+    box-shadow:0px 8px 5px 1px;
  }
