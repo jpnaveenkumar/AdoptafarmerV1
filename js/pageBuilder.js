@@ -1,5 +1,7 @@
 var isMissionMotoFired = false;
 var isCounterFired = false;
+var ImageController ;
+var ScreenController ;
 function setCarouselHeight(){
     var hero = $("#hero").offset();
     var windowHeight = $(window).height();
@@ -121,9 +123,123 @@ function cardHover(){
         $("#goalText").text("Our Goal");
     });
 }
+function getImageElement(counterIndex)
+{
+    var image = document.createElement("img");
+    image.src = Images[counterIndex]["url"];
+    image.style.height="inherit";
+    image.style.width="100%";
+    return image;
+}
+function InitializeImages()
+{
+    ImageController = -1;
+    ScreenController = 0;
+    var elements = document.querySelectorAll(".gallery-image");
+    for(var i=0 ; i < elements.length ; i++){
+        ImageController++;
+        var image = getImageElement(ImageController);
+        $(elements[i]).append(image);
+    }
+    console.log("ScreenController : "+ ScreenController+" ImageController : "+ImageController);
+}
+function registerGallery(){
+    InitializeImages();
+    $("#prevImg").hide();
+    $("#nextImg").click(()=>{
+        if(document.getElementById("prevImg").style.display == "none"){
+            $("#prevImg").show();
+        }
+        var width = 80;
+        var zindex = 10;
+        var top = 0;
+        var firstElement ;
+        var elements = document.querySelectorAll(".gallery-image");
+        for(var i=0 ;i < elements.length; i++){
+            var element = elements[i]; 
+            if(i==0){
+                firstElement = element;
+            }
+            else{
+                $(element).css({
+                    "width":width+"%",
+                    "z-index":zindex,
+                    "top":top+"px"
+                });
+                width = width - 5;
+                zindex = zindex - 1;
+                top = top - 20;
+            }
+        }
+        $(firstElement).remove();
+        $(firstElement).css({
+            "width":width+"%",
+            "z-index":zindex,
+            "top":top+"px"
+        });
+        if(ScreenController +1 < Images.length){
+            ScreenController++;
+        }
+        if(ScreenController == Images.length-1){
+            $("#nextImg").hide();
+        }
+        if((ImageController+1) < Images.length){
+            ImageController++;
+            var imageElement = getImageElement(ImageController);
+            $(firstElement).html(imageElement);
+        }
+        $("#gallery").append(firstElement);
+        console.log("ScreenController : "+ ScreenController+" ImageController : "+ImageController);
+    });
+    $("#prevImg").click(()=>{
+        if(document.getElementById("nextImg").style.display == "none"){
+            $("#nextImg").show();
+        }
+        var width = 55;
+        var zindex = 5 ;
+        var top = -100;
+        var lastElement;
+        var elements = document.querySelectorAll(".gallery-image");
+        for(var i=elements.length-1 ; i >= 0 ; i--){
+            var element = elements[i];
+            if(i == elements.length-1){
+                lastElement = elements[i];
+            }else{
+                $(element).css({
+                    "width":width+"%",
+                    "z-index":zindex,
+                    "top":top+"px"
+                });
+                width = width + 5;
+                zindex = zindex + 1;
+                top = top + 20;
+            }
+        }
+        $(lastElement).remove();
+        $(lastElement).css({
+            "width":width+"%",
+            "z-index":zindex,
+            "top":top+"px"
+        });
+        if(ScreenController-1 >= 0){
+            ScreenController--;
+        }
+        if(ScreenController + 6 -1 < ImageController){
+            ImageController--;
+        }
+        if(ScreenController == 0){
+            $("#prevImg").hide();
+        }
+        var imageElement = getImageElement(ScreenController);
+        $(lastElement).html(imageElement);
+        $("#gallery").prepend(lastElement);
+        console.log("ScreenController : "+ ScreenController+" ImageController : "+ImageController);
+    });
+}
 $(document).ready(()=>{
     registerScrollEvents();
     registerOnclick();
+    registerGallery();
     setCarouselHeight();
     cardHover();
     $('.carousel').carousel(
@@ -136,7 +252,7 @@ $(document).ready(()=>{
         }
     );
     setCarouselAutoplay();
-
+    console.log(Images);
     $('#approachImg').click(function(){
 
     });
