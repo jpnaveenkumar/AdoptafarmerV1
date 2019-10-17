@@ -1,7 +1,7 @@
 var isMissionMotoFired = false;
 var isCounterFired = false;
-var ImageCounter = -1;
-var currentUI = 0;
+var ImageController ;
+var ScreenController ;
 function setCarouselHeight(){
     var hero = $("#hero").offset();
     var windowHeight = $(window).height();
@@ -133,12 +133,15 @@ function getImageElement(counterIndex)
 }
 function InitializeImages()
 {
+    ImageController = -1;
+    ScreenController = 0;
     var elements = document.querySelectorAll(".gallery-image");
     for(var i=0 ; i < elements.length ; i++){
-        ImageCounter++;
-        var image = getImageElement(ImageCounter);
+        ImageController++;
+        var image = getImageElement(ImageController);
         $(elements[i]).append(image);
     }
+    console.log("ScreenController : "+ ScreenController+" ImageController : "+ImageController);
 }
 function registerGallery(){
     InitializeImages();
@@ -146,11 +149,6 @@ function registerGallery(){
     $("#nextImg").click(()=>{
         if(document.getElementById("prevImg").style.display == "none"){
             $("#prevImg").show();
-        }
-        currentUI++;
-        console.log(currentUI);
-        if(currentUI == Images.length-1){
-            $("#nextImg").hide();
         }
         var width = 80;
         var zindex = 10;
@@ -179,20 +177,24 @@ function registerGallery(){
             "z-index":zindex,
             "top":top+"px"
         });
- 
-        if(ImageCounter != Images.length-1){
-            ImageCounter++;
-            var imageElement = getImageElement(ImageCounter);
+        if(ScreenController +1 < Images.length){
+            ScreenController++;
+        }
+        if(ScreenController == Images.length-1){
+            $("#nextImg").hide();
+        }
+        if((ImageController+1) < Images.length){
+            ImageController++;
+            var imageElement = getImageElement(ImageController);
             $(firstElement).html(imageElement);
         }
         $("#gallery").append(firstElement);
+        console.log("ScreenController : "+ ScreenController+" ImageController : "+ImageController);
     });
     $("#prevImg").click(()=>{
         if(document.getElementById("nextImg").style.display == "none"){
             $("#nextImg").show();
         }
-        currentUI--;
-        console.log(currentUI);
         var width = 55;
         var zindex = 5 ;
         var top = -100;
@@ -219,14 +221,19 @@ function registerGallery(){
             "z-index":zindex,
             "top":top+"px"
         });
-        var index = ImageCounter - 6;
-        ImageCounter--;
-        if(index == 0){
+        if(ScreenController-1 >= 0){
+            ScreenController--;
+        }
+        if(ScreenController + 6 -1 < ImageController){
+            ImageController--;
+        }
+        if(ScreenController == 0){
             $("#prevImg").hide();
         }
-        var imageElement = getImageElement(index);
+        var imageElement = getImageElement(ScreenController);
         $(lastElement).html(imageElement);
         $("#gallery").prepend(lastElement);
+        console.log("ScreenController : "+ ScreenController+" ImageController : "+ImageController);
     });
 }
 $(document).ready(()=>{
