@@ -207,6 +207,9 @@
          display: none;
      }
  }
+ .fadeOut{
+     animation: fadeout 0.2s forwards;
+ }
  .headerFadeOut{
     animation: fadeout 1.5s; 
 }
