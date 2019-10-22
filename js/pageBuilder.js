@@ -2,6 +2,8 @@ var isMissionMotoFired = false;
 var isCounterFired = false;
 var ImageController ;
 var ScreenController ;
+var TabController = 'ALL';
+var ImageSource = Images;
 function setCarouselHeight(){
     var hero = $("#hero").offset();
     var windowHeight = $(window).height();
@@ -126,26 +128,35 @@ function cardHover(){
 function getImageElement(counterIndex)
 {
     var image = document.createElement("img");
-    image.src = Images[counterIndex]["url"];
+    image.src = ImageSource[counterIndex]["src"];
     image.style.height="inherit";
     image.style.width="100%";
     return image;
 }
 function InitializeImages()
 {
+    $("#prevImg").hide();
     ImageController = -1;
     ScreenController = 0;
     var elements = document.querySelectorAll(".gallery-image");
     for(var i=0 ; i < elements.length ; i++){
         ImageController++;
         var image = getImageElement(ImageController);
-        $(elements[i]).append(image);
+        $(elements[i]).html(image);
     }
     console.log("ScreenController : "+ ScreenController+" ImageController : "+ImageController);
 }
 function registerGallery(){
     InitializeImages();
-    $("#prevImg").hide();
+    $("#gallery").on('click','.gallery-image',function(){
+        console.log("clicked");
+        Spotlight.show(ImageSource, {
+            index: ScreenController+1,
+            theme: "white",
+            autohide: false,
+            control: ["autofit", "zoom"]
+        });
+    });
     $("#nextImg").click(()=>{
         if(document.getElementById("prevImg").style.display == "none"){
             $("#prevImg").show();
@@ -177,13 +188,13 @@ function registerGallery(){
             "z-index":zindex,
             "top":top+"px"
         });
-        if(ScreenController +1 < Images.length){
+        if(ScreenController +1 < ImageSource.length){
             ScreenController++;
         }
-        if(ScreenController == Images.length-1){
+        if(ScreenController == ImageSource.length-1){
             $("#nextImg").hide();
         }
-        if((ImageController+1) < Images.length){
+        if((ImageController+1) < ImageSource.length){
             ImageController++;
             var imageElement = getImageElement(ImageController);
             $(firstElement).html(imageElement);
@@ -236,11 +247,32 @@ function registerGallery(){
         console.log("ScreenController : "+ ScreenController+" ImageController : "+ImageController);
     });
 }
+function registerTabListener(){
+    $('.tabby').click(function(){
+        $('.tabby').css("background-color",'white');
+        var id = $(this).attr("id");
+        $("#"+id).css("background-color",'#d6d7d6');
+        if(id == "allImages"){
+            TabController = 'ALL';
+            ImageSource = Images;
+        }
+        else if(id == "oldImages"){
+            TabController = 'OLD';
+            ImageSource = OldImages;
+        }
+        else if(id == "recentImages"){
+            TabController = 'RECENT';
+            ImageSource = RecentImages;
+        }
+        InitializeImages();
+    });
+}
 $(document).ready(()=>{
     registerScrollEvents();
     registerOnclick();
     registerGallery();
     setCarouselHeight();
+    registerTabListener();
     cardHover();
     $('.carousel').carousel(
         {
@@ -253,7 +285,4 @@ $(document).ready(()=>{
     );
     setCarouselAutoplay();
     console.log(Images);
-    $('#approachImg').click(function(){
-
-    });
 });

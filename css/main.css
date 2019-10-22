@@ -456,3 +456,42 @@
                   10px 10px 100px #18ffff;
     }
   }
+  .gallery-image:hover{
+      cursor: pointer;
+  }
+  .tabby,.tabby:hover{
+      background-color: white;
+  }
+  #eventTabs a:nth-child(n){
+    background-color:  white;
+    color:black;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-left: 8px solid #10820e;
+    box-shadow: 5px 0px 2px 2px #10820e;
+  }
+  @keyframes smallFlip{
+      0%{
+          transform: rotateZ(0deg);
+      }
+      40%{
+        transform: rotateZ(5deg);
+      }
+      80%{
+        transform: rotateZ(-5deg);
+      }
+      100%{
+        transform: rotateZ(0deg);
+      }
+  }
+  #eventTabs a:nth-child(1){
+      animation : smallFlip 5s infinite;
+  }
+  #eventTabs a:nth-child(3){
+    animation : smallFlip 5s infinite;
+    animation-delay: 1s;
+  }
+  #eventTabs a:nth-child(5){
+    animation : smallFlip 5s infinite;
+    animation-delay: 2s;
+  }
