@@ -136,6 +136,7 @@ function getImageElement(counterIndex)
 function InitializeImages()
 {
     $("#prevImg").hide();
+    $("#nextImg").show();
     ImageController = -1;
     ScreenController = 0;
     var elements = document.querySelectorAll(".gallery-image");

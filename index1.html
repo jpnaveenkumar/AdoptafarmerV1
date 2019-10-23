@@ -254,7 +254,7 @@
                                 <i id="missionArrow" class="large material-icons" style="color:black;">arrow_back</i>
                             </a>
                         </div>
-                        <div id="gallery" class="col l8 m8 s8 center" style="position:relative;display: flex;justify-content: center;height: -webkit-fill-available;height:-moz-available;top:70px">
+                        <div id="gallery" class="col l8 m8 s8 center" style="position:relative;display: flex;justify-content: center;top:70px">
                             <div class="gallery-image red" style="position: absolute;height:300px;width: 80%;transform: rotate(0deg);z-index:10;box-shadow:0px 0px 10px 0px black;">
                             </div>
                             <div class="gallery-image blue" style="position: absolute;height:300px;width: 75%;transform: rotate(0deg);top:-20px;z-index:9;box-shadow:0px 0px 10px 1px black;">
@@ -281,14 +281,30 @@
         
         <div class="container">
             <div class="row marginBotton50 margintop40">
-                <div class="col l3 m3" id="eventTabs" style="display: flex;flex-direction: column;align-items: center">
-                    <a class="waves-effect waves-light btn-large bold">All Events</a>
+                <div class="col l3 m3 " id="eventTabs" style="display: flex;flex-direction: column;align-items: center;padding-top:20px">
+                    <a class="waves-effect waves-light btn-large bold eventsBtn" id="allEvents">All Events</a>
                     <div style="text-align:center;width:10px;height:50px;background-color: chocolate">
                     </div>
-                    <a class="waves-effect waves-light btn-large bold">Upcoming Events</a>
+                    <a class="waves-effect waves-light btn-large bold eventsBtn" id="upcomingEvents">Upcoming Events</a>
                     <div style="text-align:center;width:10px;height:50px;background-color: chocolate">
                     </div>
-                    <a class="waves-effect waves-light btn-large bold">Past Events</a>
+                    <a class="waves-effect waves-light btn-large bold eventsBtn" id="pastEvents">Past Events</a>
+                </div>
+                <div class="col l9 m9">
+                    <div class="row">
+                        <div id="eventsHolders" style="min-height: 320px;">
+                        </div>
+                    </div>
+                    <div class="row center">
+                        <div style="display: flex;justify-content: center;">
+                            <a id="prevEvent" class="waves-effect waves-light btn-large white" style="border-top-left-radius: 40px;border-bottom-left-radius: 40px;box-shadow: 0px 0px 5px 0px black;">
+                                <i class="large material-icons" style="color:black;" >chevron_left</i>
+                            </a>
+                            <a id="nextEvent" class="waves-effect waves-light btn-large white" style="border-top-right-radius: 40px;border-bottom-right-radius: 40px;box-shadow: 0px 0px 5px 0px black;">
+                                <i class="large material-icons" style="color:black;" >chevron_right</i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -314,10 +330,45 @@
         </div>
         <!--Parallax stats section ends here -->
 
+        <script id="eventsLoader" type="text/x-handlebars-template">
+            {{#each events}}
+                {{#ifEqual @index }}
+                    <div class="col l6 m6 center eventCard" style="min-height: 320px;box-shadow:0px 0px 10px 0px black;border-radius: 20px;width: 45%;margin-left:30px;">
+                {{else}}
+                    <div class="col l6 m6 center eventCard" style="display:none;min-height: 320px;box-shadow:0px 0px 10px 0px black;border-radius: 20px;width: 45%;margin-left:30px;">
+                {{/ifEqual}}
+                        <div class="row">
+                            <div class="col l6 m6">
+                                <img class="padding15 margintop10" src="./images/events2.jpg" width="110%" height="170px">
+                            </div>
+                            <div class="col l6 m6">
+                                <p class="bold font18 center">{{name}}</p>
+                                <p class="left-align" style="height:110px; text-overflow:ellipsis;overflow:scroll"> {{brief}}</p>
+                            </div>
+                        </div>
+                        <div class="" style="display: flex;margin-top:-20px;flex-direction: column;padding-left:15px;">
+                            <div style="display: flex">
+                                <i class="material-icons">location_on</i>
+                                <span style="word-break: break-all;padding-left:10px;padding-top:3px;"> {{location}}</span>
+                            </div>
+                            <div style="display: flex;margin-top:5px;">
+                                    <i style="padding-top:3px;" class="material-icons">access_time</i>
+                                    <span style="word-break: break-all;padding-left:10px;padding-top:3px;"> {{time}}</span>
+                            </div>
+                            <div class="center margintop10">
+                                <a id="processBtn" class="waves-effect waves-light btn">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+            {{/each}}
+        </script>
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
         <script src="https://rawcdn.githack.com/nextapps-de/spotlight/0.6.3/dist/spotlight.cdn.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
         <script type="text/javascript" src="./js/ImageData.js"></script>
+        <script type="text/javascript" src="./js/EventsData.js"></script>
         <script type="text/javascript" src="./js/pageBuilder.js"></script>
+        <script type="text/javascript" src="./js/EventsBuilder.js"></script>
     </body>
 </html>
