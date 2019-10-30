@@ -11,7 +11,7 @@ function initEvents()
     var compiledHTML = template(context);
     $("#eventsHolders").html(compiledHTML);
     $("#prevEvent").css("display","none");
-    $("#nextEvent").css("display","block");
+    $("#nextEvent").css("display","inline-block");
 }
 function registerEventsListener()
 {
@@ -29,22 +29,24 @@ function registerEventsListener()
         initEvents();
     });
     $('#nextEvent').click(function(){
-        $("#prevEvent").css("display","block");
+        $("#prevEvent").css("display","inline-block");
         var elements = document.querySelectorAll(".eventCard");
         $(elements[eventController]).css("display","none");
         eventController++;
         $(elements[eventController+1]).css("display","block");
+        $(elements[eventController+1]).addClass("fadeIn");
         console.log("eventController : "+eventController+" sourceLength : "+EventSource.length);
         if(eventController+2 == EventSource.length){
             $("#nextEvent").css("display","none");
         }
     });
     $("#prevEvent").click(function(){
-        $("#nextEvent").css("display","block");
+        $("#nextEvent").css("display","inline-block");
         var elements = document.querySelectorAll(".eventCard");
         $(elements[eventController+1]).css("display","none");
         eventController--;
         $(elements[eventController]).css("display","block");
+        $(elements[eventController]).addClass("fadeIn");
         if(eventController-1 < 0){
             $("#prevEvent").css("display","none");
         }

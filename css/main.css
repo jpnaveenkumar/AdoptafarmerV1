@@ -193,6 +193,7 @@
  @keyframes fadein{
      0%{
          opacity: 0;
+         display: block;
      }
      100%{
          opacity : 1;
@@ -206,6 +207,9 @@
          opacity : 0;
          display: none;
      }
+ }
+ .fadeIn{
+     animation : fadein 0.3s forwards;
  }
  .fadeOut{
      animation: fadeout 0.2s forwards;
@@ -263,6 +267,7 @@
  .cardText{
     padding-right:10px;
     text-align:center;
+    overflow: scroll;
  }
  #missionButton:hover{
      transform: translateX(10px);
