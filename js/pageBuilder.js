@@ -1,5 +1,6 @@
 var isMissionMotoFired = false;
 var isCounterFired = false;
+var isProcessSliderFired = false;
 var ImageController ;
 var ScreenController ;
 var TabController = 'ALL';
@@ -56,6 +57,11 @@ function registerScrollEvents()
         if( !isCounterFired && scrollBottom > $("#parallaxCount").offset().top){
             isCounterFired = true;
             animateCount();
+        }
+        if( !isProcessSliderFired && scrollBottom > $("#services").offset().top){
+            $(".hrStyle2").addClass("divSlider");
+            $(".ourServicesContainerProps").addClass("rotateleft");
+            $("#ourFarmersContainer").addClass("rotateRight");
         }
     });
 }
