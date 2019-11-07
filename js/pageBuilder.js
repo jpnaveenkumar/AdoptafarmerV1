@@ -1,7 +1,10 @@
 var isMissionMotoFired = false;
 var isCounterFired = false;
+var isProcessSliderFired = false;
 var ImageController ;
 var ScreenController ;
+var TabController = 'ALL';
+var ImageSource = Images;
 function setCarouselHeight(){
     var hero = $("#hero").offset();
     var windowHeight = $(window).height();
@@ -46,7 +49,7 @@ function registerScrollEvents()
             $("#mobileHeader").removeClass("headerFadeIn");
             $("#mobileHeader").addClass("headerFadeOut hide");
         }
-        console.log("scrollTop : "+scrollBottom+" mission: "+ $("#missionMoto").offset().top);
+        //console.log("scrollTop : "+scrollBottom+" mission: "+ $("#missionMoto").offset().top);
         if(!isMissionMotoFired && scrollBottom > $("#missionMoto").offset().top){
             isMissionMotoFired = true;
             startMissionMotoSlider();
@@ -54,6 +57,11 @@ function registerScrollEvents()
         if( !isCounterFired && scrollBottom > $("#parallaxCount").offset().top){
             isCounterFired = true;
             animateCount();
+        }
+        if( !isProcessSliderFired && scrollBottom > $("#services").offset().top){
+            $(".hrStyle2").addClass("divSlider");
+            $(".ourServicesContainerProps").addClass("rotateleft");
+            $("#ourFarmersContainer").addClass("rotateRight");
         }
     });
 }
@@ -126,26 +134,36 @@ function cardHover(){
 function getImageElement(counterIndex)
 {
     var image = document.createElement("img");
-    image.src = Images[counterIndex]["url"];
+    image.src = ImageSource[counterIndex]["src"];
     image.style.height="inherit";
     image.style.width="100%";
     return image;
 }
 function InitializeImages()
 {
+    $("#prevImg").hide();
+    $("#nextImg").show();
     ImageController = -1;
     ScreenController = 0;
     var elements = document.querySelectorAll(".gallery-image");
     for(var i=0 ; i < elements.length ; i++){
         ImageController++;
         var image = getImageElement(ImageController);
-        $(elements[i]).append(image);
+        $(elements[i]).html(image);
     }
     console.log("ScreenController : "+ ScreenController+" ImageController : "+ImageController);
 }
 function registerGallery(){
     InitializeImages();
-    $("#prevImg").hide();
+    $("#gallery").on('click','.gallery-image',function(){
+        console.log("clicked");
+        Spotlight.show(ImageSource, {
+            index: ScreenController+1,
+            theme: "white",
+            autohide: false,
+            control: ["autofit", "zoom"]
+        });
+    });
     $("#nextImg").click(()=>{
         if(document.getElementById("prevImg").style.display == "none"){
             $("#prevImg").show();
@@ -177,13 +195,13 @@ function registerGallery(){
             "z-index":zindex,
             "top":top+"px"
         });
-        if(ScreenController +1 < Images.length){
+        if(ScreenController +1 < ImageSource.length){
             ScreenController++;
         }
-        if(ScreenController == Images.length-1){
+        if(ScreenController == ImageSource.length-1){
             $("#nextImg").hide();
         }
-        if((ImageController+1) < Images.length){
+        if((ImageController+1) < ImageSource.length){
             ImageController++;
             var imageElement = getImageElement(ImageController);
             $(firstElement).html(imageElement);
@@ -236,11 +254,110 @@ function registerGallery(){
         console.log("ScreenController : "+ ScreenController+" ImageController : "+ImageController);
     });
 }
+function registerTabListener(){
+    $('.tabby').click(function(){
+        $('.tabby').css("background-color",'white');
+        var id = $(this).attr("id");
+        $("#"+id).css("background-color",'#d6d7d6');
+        if(id == "allImages"){
+            TabController = 'ALL';
+            ImageSource = Images;
+        }
+        else if(id == "oldImages"){
+            TabController = 'OLD';
+            ImageSource = OldImages;
+        }
+        else if(id == "recentImages"){
+            TabController = 'RECENT';
+            ImageSource = RecentImages;
+        }
+        InitializeImages();
+    });
+}
+function getRandomNumber(limit)
+{
+    return Math.ceil(Math.random()*limit);
+}
+function getRandomPositions(id,componentHeight)
+{
+    var baseHeight = $("#"+id).offset().top;
+    var totalHeight = baseHeight + componentHeight;
+    var width = $(window).width();
+    var positions = [];
+    var colIncrementer = undefined;
+    var rowIncrementer = undefined;
+    var helpers = [ -10, 5, -12, 33, 27, 11, -7, 34, -24, 20];
+    if(width < 600){
+        colIncrementer = 100;
+        rowIncrementer = 150;
+    }
+    else{
+        colIncrementer = 130;
+        rowIncrementer = 200;
+    }
+    for(var st= 100 ; st < componentHeight-30; st=st+rowIncrementer){
+        for(var end = 50 ; end < width-30 ;end=end+colIncrementer){
+            var x = end + helpers[getRandomNumber(10)];
+            var y = st + helpers[getRandomNumber(10)];
+            if( y < componentHeight && x >= 50 && x < width-50){
+            var position = {}
+            position.x = x;
+            position.y = y;
+            positions.push(position);
+            }
+        }
+    }
+    return positions;
+}
+function generateRandomElements()
+{
+    var positions = getRandomPositions("galleryContainer",900);
+    var html = "";
+    var animeClasses = ["","randomAnimation1","randomAnimation2"];
+    var imgurls = [
+        "",
+        "https://d29fhpw069ctt2.cloudfront.net/icon/image/49018/preview.svg",
+        "https://d29fhpw069ctt2.cloudfront.net/icon/image/48980/preview.svg",
+        "https://d29fhpw069ctt2.cloudfront.net/icon/image/48997/preview.svg",
+        "https://d29fhpw069ctt2.cloudfront.net/icon/image/49006/preview.svg",
+        "https://d29fhpw069ctt2.cloudfront.net/icon/image/49036/preview.svg",
+        "https://d29fhpw069ctt2.cloudfront.net/icon/image/84598/preview.svg",
+        "https://d29fhpw069ctt2.cloudfront.net/icon/image/120743/preview.svg"
+    ]
+    for(var i=0 ; i< positions.length; i++){
+        console.log(positions[i].x+" "+positions[i].y);
+        html = html + '<div style="position:absolute;z-index:2;top:'+positions[i].y+'px;left:'+positions[i].x+'px;" class="'+animeClasses[getRandomNumber(2)]+' particles">';
+        html = html + '<img src="'+imgurls[getRandomNumber(imgurls.length-1)]+'" height="20px" width="20px">';
+        html = html + '</div>';
+    }
+    console.log(html);
+    $("#randomElementsHolder").append(html);
+    $("#randomElementsHolder").on("mouseenter",".particles",function(){
+        console.log(this);
+        $(this).removeClass("movement");
+        $(this).addClass("movement");
+        console.log(this);
+    });
+}
+function getDevice()
+{
+    var windowWidth = $(window).width();
+    if(windowWidth < 600){
+        return "mobile";
+    }
+    else if(windowWidth < 1000){
+        return "tablet";
+    }
+    else{
+        return "monitor";
+    }
+}
 $(document).ready(()=>{
     registerScrollEvents();
     registerOnclick();
     registerGallery();
     setCarouselHeight();
+    registerTabListener();
     cardHover();
     $('.carousel').carousel(
         {
@@ -252,8 +369,6 @@ $(document).ready(()=>{
         }
     );
     setCarouselAutoplay();
+    generateRandomElements();
     console.log(Images);
-    $('#approachImg').click(function(){
-
-    });
 });

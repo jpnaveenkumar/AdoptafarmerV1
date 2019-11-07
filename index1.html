@@ -10,6 +10,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
         <!--Let browser know website is optimized for mobile-->
         <link rel="stylesheet" href="css/main.css"/>
+        <link rel="stylesheet" href="css/Slider.css"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	    <style>
 	    </style>
@@ -152,7 +153,7 @@
         <!--Helping Us section starts here-->
         <div id="joinUs">
             <div class="container">
-                <p class="font18 whiteText bold wordSpace10 paddingtop10 center letterSpace1">How Can You Help Us !!!</p>
+                <p class="font18 whiteText bold wordSpace10 paddingtop10 center letterSpace1 helpUs">How Can You Help Us !!!</p>
                 <div class="hrStyle1" ></div>
                 <div class="row paddingBottom50 paddingTop50">
                     <div class="col l4 m6 s12 center marginBotton30">
@@ -200,12 +201,20 @@
         <!--Helping Us section ends here-->
         
         <!--Services section starts-->
-        <div class="container paddingBottom50 paddingTop50">
+        <div id="services" class="container paddingBottom100">
             <div class="row">
-                <div class="col l6 m6 s12 center marginBotton50">
-                    <div class="container">
-                        <div class="animateLeft" class="ourServicesContainerProps">
-                            <img src="images/processCover.png" width="100%" height="240px" class="ourProcessImgProps">
+                <div class="col l6 m12 s12">
+                    <p class="font24 bold">Our Process</p>
+                    <div class="hrStyle2">
+                    </div>
+                    <ul id="ourProcessList">
+                        <li class="ourProcessListItem">NGO Team visits the supported Farmers on weekly basis and on average each farmer will be reviewed monthly once.</li>
+                        <li class="ourProcessListItem">Conducting Monthly Farmers meet to identify best performing farmers and cross train other farmers.</li>
+                        <li class="ourProcessListItem">Provide guidance to add more income generating sources.</li>
+                    </ul>
+                    <div class="margintop40 customCenter paddingBottom20">
+                        <div class="alcatel ourServicesContainerProps">
+                            <img src="images/processCover.png" width="99%" height="240px" class="ourProcessImgProps">
                             <div class="padding40 ourProcessContentProps">
                                 <p class="font18 bold"> Our Process</p>
                                 <a id="processBtn" class="waves-effect waves-light btn">Read More</a>
@@ -213,9 +222,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="col l6 m6 s12 center">
-                    <div class="container">
-                        <div class="animateRight" class="ourServicesContainerProps">
+                <div class="col l6 m12 s12">
+                    <p class="font24 bold">Our Farmers</p>
+                    <div class="hrStyle2">
+                    </div>
+                    <ul id="ourProcessList">
+                        <li class="ourProcessListItem">Few of the donors have expressed interest in doing ‘Godanam’ (Donating a Cow). We have identified 3 prospective farmers who are able to use the cow for natural farming – please contact us if you are interested.</li>
+                        <li class="ourProcessListItem">We have identified 12 new prospective and needy farmers that need your continued support.</li>
+                    </ul>
+                    <div class="margintop40 customCenter">
+                        <div id="ourFarmersContainer" class="alcatel ourServicesContainerProps">
                             <img src="images/ourFarmers.png" width="100%" height="240px" class="ourFarmersImgProps">
                             <div class="padding40 ourFarmesContainerProps">
                                 <p class="font18 bold"> Our Farmers</p>
@@ -228,51 +244,51 @@
         </div>
         <!--Services section ends-->
 
-        <div style="background-color:black;">
+        <!--Galery section starts here -->
+        <div id="galleryContainer">
+            <div class="relative" id="randomElementsHolder">
+
+            </div>
             <div class="row" style="min-height: 600px;">
-                <div class="col l3 m3 s12 hide-on-small-only" style="display: flex;justify-content: center;text-align: center;height:500px;align-items: center;flex-direction: column">
-                    <p class="font40 bold whiteText letterSpace1" id="GalleryName">Gallery</p>
-                    <a class="waves-effect waves-light btn white" style="border-radius: 20px;"><span style="color:black">More Images</span></a>
-                    <!-- <a id="" style="border:2px solid black;border-radius: 20px;color:black;background-color: white;box-shadow: 0px 0px 20px 5px white;" class="waves-effect waves-light btn">All Images</a> -->
+                <div class="col l3 m3 s12 hide-on-small-only" style="display: flex;justify-content: center;text-align: center;height:800px;align-items: center;flex-direction: column">
+                    <p style="z-index: 3;" class="font40 bold whiteText letterSpace1" id="GalleryName">Gallery</p>
+                    <a style="z-index: 3;border-top-left-radius: 20px;border-bottom-right-radius: 20px;box-shadow: 3px 3px 5px 0px grey" class="waves-effect waves-light btn-large white"><span style="color:black">More Images</span></a>
                 </div>
                 <div class="col l9 m9 s12" style="margin-top:50px;">
                     <div class="row hide-on-med-and-up">
                         <div class="s12">
-                            <p class="font24 bold whiteText letterSpace1 center">Gallery</p>
+                            <p style="z-index: 3;" class="font24 bold whiteText letterSpace1 center relative">Gallery</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col l12 s12 m12 center" style="display:flex;justify-content: center">
-                                <a class="waves-effect waves-light btn white"><span style="color:black">All</span></a>
-                                <a class="waves-effect waves-light btn white"><span style="color:black">Recent</span></a>
+                            <a class="waves-effect waves-light btn-large tabby" id="allImages" style="z-index:3;border-top-left-radius: 25px;border-bottom-left-radius: 25px;background-color: #d6d7d6"><span style="color:black">All</span></a>
+                            <a class="waves-effect waves-light btn-large tabby" id="oldImages" style="z-index:3;"><span style="color:black">Old</span></a>
+                            <a class="waves-effect waves-light btn-large tabby" id="recentImages" style="z-index:3;border-top-right-radius: 25px;border-bottom-right-radius: 25px;"><span style="color:black">Recent</span></a>
                         </div>
                     </div>
                     <div class="row paddingTop50">
-                        <div class="col l2 m2 s2 center" style="height: 300px;display: flex;align-items: center;justify-content: center"> 
-                            <a id="prevImg" class="btn-floating btn-large" style="background-color: white">
+                        <div class="col l2 m2 s2 center" style="height: 500px;display: flex;align-items: center;justify-content: center"> 
+                            <a id="prevImg" class="btn-floating btn-large" style="background-color: white;z-index: 3">
                                 <i id="missionArrow" class="large material-icons" style="color:black;">arrow_back</i>
                             </a>
                         </div>
-                        <div id="gallery" class="col l8 m8 s8 center" style="position:relative;display: flex;justify-content: center;height: 300px;top:70px">
-                            <div class="gallery-image red" style="position: absolute;height:300px;width: 80%;transform: rotate(0deg);z-index:10;box-shadow:0px 0px 10px 0px black;">
+                        <div id="gallery" class="col l8 m8 s8 center" style="position:relative;display: flex;justify-content: center;top:80px">
+                            <div class="gallery-image red" style="position: absolute;height:500px;width: 80%;transform: rotate(0deg);z-index:10;box-shadow:0px 0px 10px 0px black;">
                             </div>
-                            <div class="gallery-image blue" style="position: absolute;height:300px;width: 75%;transform: rotate(0deg);top:-20px;z-index:9;box-shadow:0px 0px 10px 1px black;">
+                            <div class="gallery-image blue" style="position: absolute;height:500px;width: 75%;transform: rotate(0deg);top:-20px;z-index:9;box-shadow:0px 0px 10px 1px black;">
                             </div>
-                            <div class="gallery-image green" style="position: absolute;height:300px;width: 70%;transform: rotate(0deg);top:-40px;z-index:8;box-shadow:0px 0px 10px 1px black;">
+                            <div class="gallery-image green" style="position: absolute;height:500px;width: 70%;transform: rotate(0deg);top:-40px;z-index:8;box-shadow:0px 0px 10px 1px black;">
                             </div>
-                            <div class="gallery-image yellow" style="position: absolute;height:300px;width: 65%;transform: rotate(0deg);top:-60px;z-index:7;box-shadow:0px 0px 10px 1px black;">
+                            <div class="gallery-image yellow" style="position: absolute;height:500px;width: 65%;transform: rotate(0deg);top:-60px;z-index:7;box-shadow:0px 0px 10px 1px black;">
                             </div>
-                            <div class="gallery-image orange" style="position: absolute;height:300px;width: 60%;transform: rotate(0deg);top:-80px;z-index:6;box-shadow:0px 0px 10px 1px black;">
+                            <div class="gallery-image orange" style="position: absolute;height:500px;width: 60%;transform: rotate(0deg);top:-80px;z-index:6;box-shadow:0px 0px 10px 1px black;">
                             </div>
-                            <div class="gallery-image grey" style="position: absolute;height:300px;width: 55%;transform: rotate(0deg);top:-100px;z-index:5;box-shadow:0px 0px 10px 1px black;">
+                            <div class="gallery-image grey" style="position: absolute;height:500px;width: 55%;transform: rotate(0deg);top:-100px;z-index:5;box-shadow:0px 0px 10px 1px black;">
                             </div>
-                            <!-- <div style="position: absolute;height:300px;width: 80%;background-color: white;transform: rotate(5deg);border: 3px solid greenyellow">
-                            </div>
-                            <div style="position: absolute;height:300px;width: 80%;background-color: white;transform: rotate(0deg);border: 3px solid greenyellow">
-                            </div> -->
                         </div>
-                        <div class="col l2 m2 s2 center" style="height: 300px;display: flex;align-items: center"> 
-                            <a id="nextImg" class="btn-floating btn-large" style="background-color: white" >
+                        <div class="col l2 m2 s2 center" style="height: 500px;display: flex;align-items: center"> 
+                            <a id="nextImg" class="btn-floating btn-large" style="background-color: white;z-index: 3" >
                                 <i id="missionArrow" class="large material-icons" style="color:black;" >arrow_forward</i>
                             </a>
                         </div>
@@ -280,6 +296,28 @@
                 </div>
             </div>
         </div>
+        <!--Galery section ends here -->
+        
+        <!--Events section starts here-->
+        <div class="container">
+            <div class="row marginBotton50 margintop40">
+                <div class="col m12 s12 l12">
+                    <div style="display: flex;justify-content: center">
+                        <a class="waves-effect waves-light btn-large eventsBtn" id="upcomingEvents" style="border-top-left-radius: 25px;border-bottom-left-radius: 25px;background-color: #004d40;color:white"><span>Upcoming Events</span></a>
+                        <a class="waves-effect waves-light btn-large eventsBtn" id="pastEvents" style="color:black;background-color:white"><span>Past Events</span></a>
+                        <a class="waves-effect waves-light btn-large eventsBtn" id="allEvents" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;color:black;background-color:white"><span>All Events</span></a>
+                    </div>
+                </div>
+                <div class="col l12 m12 s12 margintop70">
+                    <div class="row">
+                        <div id="eventsContainer"></div>
+                        <div id="eventsHolders" class="slider" style="min-height: 320px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Events section ends here-->
 
         <!--Parallax stats section starts here -->
         <div id="parallaxCount" style="margin-top: -20px;">
@@ -302,9 +340,46 @@
         </div>
         <!--Parallax stats section ends here -->
 
+        <script id="eventsLoader" type="text/x-handlebars-template">
+            {{#each events}}
+                    <div class="center eventCard sliderItems" style="min-height: 320px;box-shadow:0px 0px 10px 0px black;border-radius: 20px;margin-bottom: 15px;">
+                        <div class="row">
+                            <div class="col l12 m12 s12 center margintop40">
+                                <img class="bluntBorder" src="./images/events2.jpg" width="70%" height="200px">
+                            </div>
+                            <div class="col l12 m12 s12 center">
+                                    <p class="bold font18 center">{{name}}</p>
+                                </div>
+                            <div class="col l12 m12 s12">
+                                <div class="container">
+                                    <p style="max-height:110px; text-overflow:ellipsis;overflow:scroll;padding-left:20px;padding-right:20px;text-align: justify"> {{brief}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display: flex;margin-top:-20px;flex-direction: column;padding-left:15px;">
+                            <div style="display: flex;justify-content: center">
+                                <i class="material-icons">location_on</i>
+                                <span style="word-break: break-all;padding-left:10px;padding-top:3px;font-weight: bold"> {{location}}</span>
+                            </div>
+                            <div style="display: flex;margin-top:5px;justify-content: center">
+                                    <i style="padding-top:3px;" class="material-icons">access_time</i>
+                                    <span style="word-break: break-all;padding-left:10px;padding-top:3px;font-weight: bold"> {{time}}</span>
+                            </div>
+                            <div class="center margintop40" style="margin-bottom:30px;">
+                                <a id="processBtn" class="waves-effect waves-light btn">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+            {{/each}}
+        </script>
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <script src="https://rawcdn.githack.com/nextapps-de/spotlight/0.6.3/dist/spotlight.cdn.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
         <script type="text/javascript" src="./js/ImageData.js"></script>
+        <script type="text/javascript" src="./js/EventsData.js"></script>
         <script type="text/javascript" src="./js/pageBuilder.js"></script>
+        <script type="text/javascript" src="./js/EventsBuilder.js"></script>
+        <script type="text/javascript" src="js/Slider.js"></script>
     </body>
 </html>

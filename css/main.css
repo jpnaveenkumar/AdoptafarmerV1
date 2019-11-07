@@ -28,6 +28,9 @@
 .margintop10{
     margin-top:10px;
 }
+.margintop70{
+    margin-top:70px;
+}
 .padding5{
     padding:10px;
 }
@@ -45,7 +48,7 @@
     border-radius: 30px;
 }
 .blackBackground{
-    background-color: black;
+    background-color: #0a2701;
 }
 .whiteText{
     color : white;
@@ -193,6 +196,7 @@
  @keyframes fadein{
      0%{
          opacity: 0;
+         display: block;
      }
      100%{
          opacity : 1;
@@ -206,6 +210,9 @@
          opacity : 0;
          display: none;
      }
+ }
+ .fadeIn{
+     animation : fadein 0.3s forwards;
  }
  .fadeOut{
      animation: fadeout 0.2s forwards;
@@ -253,7 +260,7 @@
     padding:5px;
     border:2px solid #2ecc40;
     border-spacing:3px;
-    box-shadow:0px 0px 0px 5px white;
+    box-shadow:0px 0px 0px 7px white;
  }
  .cardTextContainer{
     display: flex;
@@ -263,32 +270,11 @@
  .cardText{
     padding-right:10px;
     text-align:center;
+    overflow: scroll;
  }
  #missionButton:hover{
      transform: translateX(10px);
  }
- @keyframes bendRight{
-     0%{
-        transform: rotate(0deg);
-     }
-     100%{
-        transform: rotate(5deg);
-     }
- }
- @keyframes bendLeft{
-    0%{
-       transform: rotate(0deg);
-    }
-    100%{
-       transform: rotate(-5deg);
-    }
-}
- .animateLeft:hover{
-    animation : bendRight 1s forwards;
-}
- .animateRight:hover{
-    animation : bendLeft 1s forwards;
-}
  @keyframes fadeIn{
      0%{
          opacity: 0;
@@ -333,19 +319,38 @@
      background-attachment: fixed;
      background-position: bottom;
      background-color: #440101;
-     background-blend-mode: screen
+     background-blend-mode: screen;
  }
  #joinUs{
-     background-color: black;
+     background-image: url("../images/helpingHand1.jpg");
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-attachment: fixed;
+     background-position: bottom;
+     position: relative;
+ }
+ #joinUs::before{
+    position: absolute;
+    top:0px;
+    height: 100%;
+    width: 100%;
+    content: '';
+    z-index: 1;
+    background-color: rgba(1,1,1,0.80);
  }
  .paddingtop10{
      padding-top:20px;
+ }
+ .padding15{
+     padding:15px;
  }
  .hrStyle1{
     height:2px;
     border-radius:5px;
     background-color: white;
     margin-bottom:15px;
+    position: relative;
+    z-index: 2;
  }
  .hrStyle1:after{
      display : block;
@@ -355,6 +360,11 @@
      color: white;
      top:-20px;
      text-align: center;
+     z-index: 2;
+ }
+ .helpUs{
+     position: relative;
+     z-index: 2;
  }
  .helpingText{
     display: flex;
@@ -371,6 +381,8 @@
     padding-top:40px;
     min-height:250px;
     min-width: 230px;
+    position: relative;
+    z-index: 2;
  }
  #joinUsBtn,#DonateNowBtn,#AdoptNowBtn,#processBtn{
     border-radius: 20px;
@@ -378,9 +390,15 @@
     background-color: transparent;
     color:black;
  }
- #joinUsBtn:hover,#DonateNowBtn:hover,#AdoptNowBtn:hover,#processBtn:hover{
-     background-color: black;
+ #processBtn:hover{
+    border : 0px;
+    background-color: #004d40;
+    color: white;
+ }
+ #joinUsBtn:hover,#DonateNowBtn:hover,#AdoptNowBtn:hover{
+     background-color:black;
      color:white;
+     border : 0px;
  }
  .marginBotton30{
     margin-bottom: 30px;
@@ -390,6 +408,9 @@
  }
  .paddingBottom50{
     padding-bottom: 50px;
+ }
+ .paddingBottom100{
+    padding-bottom: 100px;
  }
  .paddingTop50{
     padding-top: 50px;
@@ -412,7 +433,7 @@
     border-top-left-radius: 200px;
     box-shadow:5px -5px 5px 1px;
     border-top-right-radius: 200px;
-    margin-left:-7px;
+    /* margin-left:-7px; */
  }
  .ourProcessContentProps{
     text-align:left;
@@ -439,7 +460,8 @@
     box-shadow:0px 8px 5px 1px;
  }
  #GalleryName{
-    animation : animateGlow 5s infinite;
+     z-index: 1;
+    /* animation : animateGlow 5s infinite; */
   }
   @keyframes animateGlow
   {
@@ -456,3 +478,166 @@
                   10px 10px 100px #18ffff;
     }
   }
+  .gallery-image:hover{
+      cursor: pointer;
+  }
+  .tabby,.tabby:hover{
+      background-color: white;
+  }
+  #eventTabs a:nth-child(n){
+    background-color:  white;
+    color:black;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-left: 8px solid #10820e;
+    box-shadow: 5px 0px 2px 2px #10820e;
+  }
+  @keyframes smallFlip{
+      0%{
+          transform: translateX(0px);
+      }
+      50%{
+        transform: translateX(15px)
+      }
+      100%{
+        transform: translateX(0px)
+      }
+  }
+  #eventTabs a:nth-child(1){
+      animation : smallFlip 5s infinite;
+  }
+  #eventTabs a:nth-child(3){
+    animation : smallFlip 5s infinite;
+    animation-delay: 1s;
+  }
+  #eventTabs a:nth-child(5){
+    animation : smallFlip 5s infinite;
+    animation-delay: 2s;
+  }
+  @keyframes sliderAnimation{
+      0%{
+        width : 0%;
+      }
+      100%{
+        width : 60%;
+      }
+  }
+  .divSlider{
+      animation : sliderAnimation 1.5s forwards;
+  }
+  #ourProcessList{
+      min-height: 230px;
+  }
+  #ourProcessList > .ourProcessListItem{
+    font-size: 18px;
+    font-weight: 300;
+    padding:10px;
+  }
+  #ourProcessList > .ourProcessListItem::before{
+    content : ' ';
+    background-image: url("../images/yellow-flower.png");
+    background-size: 30px 30px;
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+    top: 7px;
+    position: relative;
+  }
+  .alcatel{
+    max-width: 440px;
+    min-width: 350px;
+  }
+  .customCenter{
+      display: flex;
+      justify-content: center;
+  }
+  .hrStyle2{
+    height:3px;background-color: #2ecc40;
+  }
+  @keyframes animateRotateLeft{
+      0%{
+          transform: rotateZ(20deg);
+      }
+      100%{
+        transform: rotateZ(0deg);
+      }
+  }
+  .rotateleft{
+      animation: animateRotateLeft 2s forwards;
+  }
+  @keyframes animateRotateRight{
+    0%{
+        transform: rotateZ(-20deg);
+    }
+    100%{
+      transform: rotateZ(0deg);
+    }
+}
+.rotateRight{
+    animation: animateRotateRight 2s forwards;
+}
+#galleryContainer{
+    background-image: url("../images/gallerybackground1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    height:900px;
+}
+#galleryContainer::before{
+    background-color: rgba(1,1,1,0.80);
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top:0px;
+}
+.relative{
+    position: relative;
+}
+@keyframes randomAnime1{
+    0%{
+        transform: translate(0px,0px);
+    }
+    30%{
+        transform: translate(5px,3px) rotateZ(10deg);
+    }
+    50%{
+        transform: translate(-4px,6px);
+    }
+    100%{
+        transform: translate(0px,0px);
+    }
+}
+.randomAnimation1{
+    animation : randomAnime1 10s infinite forwards;
+}
+@keyframes randomAnime2{
+    0%{
+        transform: translate(0px,0px);
+    }
+    30%{
+        transform: translate(-5px,8px) rotateZ(-10deg);
+    }
+    50%{
+        transform: translate(8px,16px);
+    }
+    100%{
+        transform: translate(0px,0px);
+    }
+}
+.randomAnimation2{
+    animation : randomAnime2 10s infinite forwards;
+}
+@keyframes move{
+    0%{
+        transform: translateX(0px);
+    }
+    100%{
+        transform: translateX(10px) rotate(40deg);
+    }
+}
+.movement{
+    animation : move 2s forwards;
+}
+  
