@@ -1,6 +1,10 @@
 var isMissionMotoFired = false;
+var isMissionCardFired = false;
 var isCounterFired = false;
 var isProcessSliderFired = false;
+var isProcessFired = false;
+var isFarmerFired = false;
+var isHelpUsFired = false;
 var ImageController ;
 var ScreenController ;
 var TabController = 'ALL';
@@ -9,9 +13,9 @@ function setCarouselHeight(){
     var hero = $("#hero").offset();
     var windowHeight = $(window).height();
     var carouselHeight = windowHeight - hero.top;
-    // if(carouselHeight < 500){
-    //     carouselHeight = 500;
-    // }
+    if(carouselHeight < 600){
+        carouselHeight = 600;
+    }
     $("#hero").css("height",carouselHeight+"px");
     $(".carousel-img").css("height",carouselHeight+"px");
 }
@@ -22,10 +26,12 @@ function setCarouselAutoplay()
 }
 function startMissionMotoSlider()
 {
+    $("#approachCard").addClass("rotatefromTopLeft");
+    $("#planCard").addClass("rotatefromTopLeft");
+    $("#goalCard").addClass("rotatefromTopLeft");
     var elements = document.getElementsByClassName("rollingText");
-    console.log(elements);
     var index = 0;
-     $("#bar").addClass("slider");
+     $("#bar").addClass("missionSlider");
     var id = setInterval(()=>{
         elements[index].style.display = "block";
         elements[index].classList.add("fadeIn");
@@ -49,18 +55,30 @@ function registerScrollEvents()
             $("#mobileHeader").removeClass("headerFadeIn");
             $("#mobileHeader").addClass("headerFadeOut hide");
         }
-        //console.log("scrollTop : "+scrollBottom+" mission: "+ $("#missionMoto").offset().top);
         if(!isMissionMotoFired && scrollBottom > $("#missionMoto").offset().top){
             isMissionMotoFired = true;
             startMissionMotoSlider();
         }
-        if( !isCounterFired && scrollBottom > $("#parallaxCount").offset().top){
+        if(!isHelpUsFired && scrollBottom > $(".helpingBox").offset().top){
+            isHelpUsFired = true;
+            console.log(scrollBottom+" "+$(".helpingBox").offset().top);
+            $(".helpingBox").addClass("loadFromDown");
+        }
+        if( !isCounterFired && scrollBottom+500 > $("#parallaxCount").offset().top){
             isCounterFired = true;
             animateCount();
         }
         if( !isProcessSliderFired && scrollBottom > $("#services").offset().top){
             $(".hrStyle2").addClass("divSlider");
             $(".ourServicesContainerProps").addClass("rotateleft");
+            $("#ourFarmersContainer").addClass("rotateRight");
+        }
+        if(!isProcessFired && scrollBottom > $(".ourServicesContainerProps").offset().top+200){
+            isProcessFired = true;
+            $(".ourServicesContainerProps").addClass("rotateleft");
+        }
+        if(!isFarmerFired && scrollBottom > $("#ourFarmersContainer").offset().top+200){
+            isFarmerFired = true;
             $("#ourFarmersContainer").addClass("rotateRight");
         }
     });
@@ -97,10 +115,54 @@ function animateCount()
         }
     },100);
 }
+function dummy()
+{
+    window.open("https://www.paypal.me/AdoptAFarmer","_blank"); 
+}
 function registerOnclick(){
     $("#hero").on('click',()=>{
         console.log(this);
         $(this).addClass("active");
+    });
+    $(".customInput").on("click",function(){
+        if($("#"+this.id).text()==this.getAttribute("name")){
+            $("#"+this.id).text("");
+        }
+    });
+    $(".customInput").on("blur",function(){
+        if($("#"+this.id).text().length==0){
+            $("#"+this.id).text(this.getAttribute("name"));
+        }
+    });
+    $("#heroButton").on("touchstart click",function(){
+        console.log("cloic");
+        window.open("https://www.paypal.me/AdoptAFarmer","_blank");
+    });
+    $(".headerText").on("click touchstart",function(){
+        var element = $(this).attr("name");
+        var divToScroll = undefined;
+        if(element == "Mission"){
+            divToScroll = "#mission";
+        }
+        else if(element == "Process")
+        {
+            divToScroll = "#services";
+        }
+        else if(element == "Farmer")
+        {
+            divToScroll = "#services";
+        }
+        else if(element == "Gallery")
+        {
+            divToScroll = "#galleryContainer"
+        }
+        else if(element == "Events")
+        {
+            divToScroll = "#eventsContainer";
+        }
+        $('html, body').animate({
+            scrollTop: $(divToScroll).offset().top-100
+        }, 2000);
     });
 }
 function cardHover(){
@@ -207,7 +269,7 @@ function registerGallery(){
             $(firstElement).html(imageElement);
         }
         $("#gallery").append(firstElement);
-        console.log("ScreenController : "+ ScreenController+" ImageController : "+ImageController);
+        //console.log("ScreenController : "+ ScreenController+" ImageController : "+ImageController);
     });
     $("#prevImg").click(()=>{
         if(document.getElementById("nextImg").style.display == "none"){
@@ -251,7 +313,7 @@ function registerGallery(){
         var imageElement = getImageElement(ScreenController);
         $(lastElement).html(imageElement);
         $("#gallery").prepend(lastElement);
-        console.log("ScreenController : "+ ScreenController+" ImageController : "+ImageController);
+        //console.log("ScreenController : "+ ScreenController+" ImageController : "+ImageController);
     });
 }
 function registerTabListener(){
@@ -325,12 +387,12 @@ function generateRandomElements()
         "https://d29fhpw069ctt2.cloudfront.net/icon/image/120743/preview.svg"
     ]
     for(var i=0 ; i< positions.length; i++){
-        console.log(positions[i].x+" "+positions[i].y);
+        //console.log(positions[i].x+" "+positions[i].y);
         html = html + '<div style="position:absolute;z-index:2;top:'+positions[i].y+'px;left:'+positions[i].x+'px;" class="'+animeClasses[getRandomNumber(2)]+' particles">';
         html = html + '<img src="'+imgurls[getRandomNumber(imgurls.length-1)]+'" height="20px" width="20px">';
         html = html + '</div>';
     }
-    console.log(html);
+    //console.log(html);
     $("#randomElementsHolder").append(html);
     $("#randomElementsHolder").on("mouseenter",".particles",function(){
         console.log(this);
@@ -370,5 +432,5 @@ $(document).ready(()=>{
     );
     setCarouselAutoplay();
     generateRandomElements();
-    console.log(Images);
+    //console.log(Images);
 });

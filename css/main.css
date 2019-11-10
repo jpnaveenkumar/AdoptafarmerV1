@@ -102,7 +102,6 @@
 .zindex0{
     z-index: 0;
 }
-
 .carousel1{
    background-image: url(../images/carousel/img6.jpg);
    background-repeat: no-repeat;
@@ -158,7 +157,7 @@
         content : 'A farmer is a magician who produces money from the mud.'
      }
      100%{
-         content : 'The ultimate goal of farming is not the growing of crops, but the cultivation and perfection of human beings.'
+         content : 'Farming is a profession of hope.'
      }
  }
  #slidingText{
@@ -295,7 +294,7 @@
     justify-content: left;
     flex-wrap: wrap;
  }
- @keyframes slideRight{
+ @keyframes rideRight{
      0%{
          left: 0%;
      }
@@ -303,8 +302,8 @@
          left: 90%;
      }
  }
- .slider{
-     animation : slideRight 5s forwards linear;
+ .missionSlider{
+     animation : rideRight 5s forwards linear;
  }
  #bar{
     height:50px;
@@ -433,7 +432,6 @@
     border-top-left-radius: 200px;
     box-shadow:5px -5px 5px 1px;
     border-top-right-radius: 200px;
-    /* margin-left:-7px; */
  }
  .ourProcessContentProps{
     text-align:left;
@@ -441,6 +439,9 @@
     border:2px solid black;
     border-bottom-right-radius: 200px;
     box-shadow:0px 8px 5px 1px;
+ }
+ #services{
+     z-index: 5;
  }
  .ourServicesContainerProps{
     border-top-left-radius: 20px;
@@ -640,4 +641,91 @@
 .movement{
     animation : move 2s forwards;
 }
-  
+#footer{
+    background-image: url("../images/footer.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+#footer::after{
+    position: absolute;
+    background-color: black;
+    opacity: 0.8;
+    top:0px;
+    height:100%;
+    width: 100%;
+    content: '';
+    z-index: 1;
+}
+#commentBtn
+{
+    background: transparent;
+    border:2px solid white;
+    border-radius: 7px;
+}
+@keyframes rotatefromTopLeftAnime{
+    0%{
+      transform : rotate(300deg);
+      opacity: 0;
+    }    
+    60%{
+        opacity: 0.3;
+    }
+    100%{
+      transform : rotate(360deg);
+      transform-origin : top left;
+      opacity: 1;
+    }
+  }
+.rotatefromTopLeft{
+    animation : rotatefromTopLeftAnime 2s;
+}
+@keyframes rotatefromTopRightAnime{
+    0%{
+      transform : rotate(60deg);
+      opacity: 0;
+    }
+    60%{
+        opacity: 0.3;
+    }
+    100%{
+      transform : rotate(0deg);
+      transform-origin : top right;
+      opacity: 1;
+    }
+  }
+.rotatefromTopRight{
+    animation : rotatefromTopRightAnime 2s;
+}
+@keyframes dropfromTopAnime{
+    0%{
+        transform: rotateX(120deg);
+        opacity: 0;
+        transform-origin : top center;
+    }
+    100%{
+        transform: rotateX(0deg);
+        opacity: 1;
+    }
+}
+.dropfromTop{
+    animation: dropfromTopAnime 2s;
+}
+@keyframes loadFromDownAnime{
+    0%{
+        transform: translateY(200px);
+        opacity: 0;
+    }
+    60%{
+        opacity: 0.6;
+    }
+    100%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+.loadFromDown{
+    animation :loadFromDownAnime 1.5s;
+}
+
