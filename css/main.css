@@ -77,6 +77,9 @@
 .top-50{
     top:-50px;
 }
+.top-60{
+    top:-60px;
+}
 .left5{
     left: 5px;
 }
@@ -94,7 +97,7 @@
     padding-bottom: 5px;
 }
 .pullup{
-    top:-85px !important;
+    top:-100px !important;
 }
 .zindex1{
     z-index: 1;
